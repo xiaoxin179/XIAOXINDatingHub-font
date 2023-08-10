@@ -25,8 +25,6 @@
         <h2 style="text-align: center">后台登录</h2>
         <el-form-item prop="username">
           <el-input
-            ref="ruleFormRef"
-            :rules="rules"
             v-model="form.username"
             :prefix-icon="User"
             placeholder="请输入账号"
@@ -66,6 +64,7 @@ import { reactive, ref } from "vue";
 import { User, Lock } from "@element-plus/icons-vue";
 import router from "../router";
 import request from "../utils/request.js"
+import { ElMessage } from "element-plus";
 // 创建出一个空的对象，没有任何的属性之后直接在代码中动态的添加属性即可
 const ruleFormRef = ref();
 const rules = reactive({
@@ -75,8 +74,13 @@ const rules = reactive({
 const form = reactive({});
 const login = () => {
   ruleFormRef.value.validate(valid => {
-    request.post("/login").then(res=>{
-      console.log(res); 
+    request.post("/login",form).then(res=>{
+      if(res.code==='200'){
+        ElMessage.success('登录成功')
+        router.push('/')
+      }else{
+        ElMessage.error(res.msg)
+      }
     })
   })
 }
