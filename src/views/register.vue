@@ -4,13 +4,13 @@
       height: 100vh;
       overflow: hidden;
       position: relative;
-      background-color: #ebe4e4;
+      background-color: #e6c3c3;
     "
   >
     <div
       style="
         width: 300px;
-        border-radius: 10px; 
+        border-radius: 10px;
         margin: 0 auto;
         background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
         padding: 20px;
@@ -22,7 +22,7 @@
       "
     >
       <el-form ref="ruleFormRef" :rules="rules" status-icon :model="form">
-        <h2 style="text-align: center">登录</h2>
+        <h2 style="text-align: center">注册</h2>
         <el-form-item prop="username">
           <el-input
             v-model="form.username"
@@ -39,9 +39,18 @@
             autocomplete="new-password"
           ></el-input>
         </el-form-item>
+        <el-form-item prop="confirm">
+          <el-input
+            v-model="form.confirm"
+            show-password
+            :prefix-icon="Lock"
+            placeholder="再次输入密码"
+            autocomplete="new-password"
+          ></el-input>
+        </el-form-item>
         <div style="margin-bottom: 0.83em">
-          <el-button style="width: 100%" type="primary" @click="login"
-            >登录</el-button
+          <el-button style="width: 100%" type="primary" @click="register"
+            >注册</el-button
           >
         </div>
       </el-form>
@@ -52,9 +61,9 @@
           color: rgb(115, 115, 218);
           cursor: pointer;
         "
-        @click="router.push('/register')"
+        @click="router.push('/login')"
       >
-        没有账号？点击注册
+        已有账号？点击登录
       </div>
     </div>
   </div>
@@ -64,34 +73,40 @@ import { reactive, ref } from "vue";
 import { User, Lock } from "@element-plus/icons-vue";
 import router from "../router";
 import request from "../utils/request.js";
+const form = reactive({});
 import { ElMessage } from "element-plus";
-import {useUserStore} from "../stores/user";
+import { useUserStore } from "../stores/user";
 // 创建出一个空的对象，没有任何的属性之后直接在代码中动态的添加属性即可
 const ruleFormRef = ref();
+const confirmPassword = (rule, value, callback) => {
+  if (value === "") {
+    callback(new Error("请输入确认密码"));
+  }
+  if (form && form.password !== value) {
+    callback(new Error("两次输入的密码不一致"));
+  }
+  callback();
+};
 const rules = reactive({
   username: [{ required: true, message: "请输入账号", trigger: "blur" }],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+  password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+  confirm: [{ validator: confirmPassword, trigger: "blur" }],
 });
-const form = reactive({});
-const store=useUserStore();
-const login = () => {
-  ruleFormRef.value.validate(valid => {
-    if(valid){
-      request.post("/login",form).then(res=>{
-      if(res.code==='200'){
-        ElMessage.success('登录成功')
-        // 存数据
-        // const store=useUserStore()   //放在这里是没有数据持久化
-        // store.$patch({user:res.data})//使用patch来给user赋值
-        store.setUser(res.data)
-        router.push('/')
-      }else{
-        ElMessage.error(res.msg)
-      }
-    })
+const store = useUserStore();
+const register = () => {
+  ruleFormRef.value.validate((valid) => {
+    if (valid) {
+      request.post("/register", form).then((res) => {
+        if (res.code === "200") {
+          ElMessage.success("注册成功，请登录");
+          router.push("/login");
+        } else {
+          ElMessage.error(res.msg);
+        }
+      });
     }
-  })
-}
+  });
+};
 </script>
 <style>
 </style>
