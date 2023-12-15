@@ -5,11 +5,12 @@
         <el-upload
             class="avatar-uploader"
             :action="url"
-            :headers="state.headers"
             :show-file-list="false"
             :on-success="handleAvatarSuccess"
+            :src="state.user.avatar"
+            style="margin:40px"
         >
-          <img v-if="state.user.avatar" :src="state.user.avatar" class="avatar" />
+          <img v-if="state.user.avatar" :src="state.user.avatar" class="avatar" style="border-radius: 10px" />
           <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
         </el-upload>
       </el-form-item>
@@ -23,7 +24,7 @@
         <el-input v-model="state.user.email"/>
       </el-form-item>
       <el-form-item label="">
-        <el-button type="primary" @click="save">保 存</el-button>
+        <el-button type="primary" @click="save" style="width: 380px">保 存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -43,17 +44,18 @@ let state = reactive({
   user: {},
 })
 
-const userId = store.getUserId
+const userId = store.user.id
 const loadUser = () => {
   request.get('/user/' + userId).then(res => {
     state.user = res.data
+    console.log(state.user.avatar)
   })
 }
 loadUser()
 
 const handleAvatarSuccess = (res) => {
   if (res.code === '200') {
-    state.user.avatar = res.data + "?loginId=" + store.getUser.uid
+    state.user.avatar = res.data + "?loginId=" + store.user.uid
   } else {
     ElMessage.error('上传失败')
   }

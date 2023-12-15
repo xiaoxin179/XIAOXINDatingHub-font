@@ -3,7 +3,7 @@
 </script>
 
 <template>
-我的动态
+修改密码
 </template>
 
 <style scoped>

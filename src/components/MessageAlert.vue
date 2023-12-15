@@ -3,7 +3,7 @@
 </script>
 
 <template>
-我的动态
+消息提醒
 </template>
 
 <style scoped>

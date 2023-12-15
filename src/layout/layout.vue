@@ -40,7 +40,7 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        {{user.username}}
+        <span style="font-weight: bolder;margin-left:20px;font-family: 宋体">{{user.username}}</span>
       </div> <!-- 头像和下拉菜单 -->
     </div>
     <!--  主体 -->
