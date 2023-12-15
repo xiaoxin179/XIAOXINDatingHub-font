@@ -10,28 +10,30 @@
             :src="state.user.avatar"
             style="margin:40px"
         >
-          <img v-if="state.user.avatar" :src="state.user.avatar" class="avatar" style="border-radius: 10px" />
-          <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+          <img v-if="state.user.avatar" :src="state.user.avatar" class="avatar" style="border-radius: 10px"/>
+          <el-icon v-else class="avatar-uploader-icon">
+            <Plus/>
+          </el-icon>
         </el-upload>
       </el-form-item>
       <el-form-item label="用户名">
-        <el-input v-model="state.user.username" disabled />
+        <el-input v-model="state.user.username" disabled style="width: 380px;" size="large"/>
       </el-form-item>
       <el-form-item label="姓名">
-        <el-input v-model="state.user.name"/>
+        <el-input v-model="state.user.name" style="width: 380px" size="large"/>
       </el-form-item>
       <el-form-item label="邮箱">
-        <el-input v-model="state.user.email"/>
+        <el-input v-model="state.user.email" style="width: 380px" size="large"/>
       </el-form-item>
       <el-form-item label="">
-        <el-button type="primary" @click="save" style="width: 380px">保 存</el-button>
+        <el-button type="primary" @click="save" style="width: 380px" >提交</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script setup>
-import { Plus } from '@element-plus/icons-vue'
+import {Plus} from '@element-plus/icons-vue'
 import {reactive, ref} from "vue";
 import config from "../../configs";
 import {useUserStore} from "@/stores/user";
@@ -72,7 +74,6 @@ const save = () => {
   })
 }
 </script>
-
 <style scoped>
 .avatar {
   width: 100px;

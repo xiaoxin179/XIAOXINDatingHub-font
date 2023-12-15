@@ -1,31 +1,35 @@
 <template>
   <div style="display: flex;" class="container-height">
-    <div style="width: 240px; padding: 20px" class="box">
+    <div style="width: 240px; padding: 20px;margin-top:100px" class="box">
       <ul>
-        <li @click="changePagePath('myInfo')" :class="pagePath === 'myInfo' ? 'menu-active' : ''">
+        <li class="li-radius" @click="changePagePath('myInfo')" :class="pagePath === 'myInfo' ? 'menu-active' : ''">
           <el-icon class="menu-icon">
             <User/>
           </el-icon>
-          个人资料
+          <span class="item-all">个人资料</span>
         </li>
-        <li @click="changePagePath('updatepassword')" :class="pagePath==='updatepassword'?'menu-active':''">
-          <el-icon class="menu-icon">
-            <Lock/>
-          </el-icon>
-          修改密码
+        <li class="li-radius" @click="changePagePath('forAi')" :class="pagePath==='forAi'?'menu-active':''">
+          <Icon icon="arcticons:openai-chatgpt" style="margin-right: 5px;position:relative;top:10px"/>
+          <span class="item-all">账户管理</span>
         </li>
-        <li @click="changePagePath('messageAlert')" :class="pagePath==='messageAlert'?'menu-active':''">
-          <el-icon class="menu-icon" >
-            <Message/>
-          </el-icon>
-          消息提醒
-        </li>
-        <li @click="changePagePath('myDynamic')" :class="pagePath === 'myDynamic' ? 'menu-active' : ''">
-          <el-icon class="menu-icon">
-            <Histogram/>
-          </el-icon>
-          我的动态
-        </li>
+          <li class="li-radius" @click="changePagePath('updatepassword')" :class="pagePath==='updatepassword'?'menu-active':''">
+            <el-icon class="menu-icon">
+              <Lock/>
+            </el-icon>
+            <span class="item-all">修改密码</span>
+          </li>
+          <li class="li-radius" @click="changePagePath('messageAlert')" :class="pagePath==='messageAlert'?'menu-active':''">
+            <el-icon class="menu-icon">
+              <Message/>
+            </el-icon>
+            <span class="item-all">消息提醒</span>
+          </li>
+          <li class="li-radius" @click="changePagePath('myDynamic')" :class="pagePath === 'myDynamic' ? 'menu-active' : ''">
+            <el-icon class="menu-icon">
+              <Histogram/>
+            </el-icon>
+            <span class="item-all">我的动态</span>
+          </li>
       </ul>
     </div>
 
@@ -34,6 +38,7 @@
       <MyDynamic v-if="pagePath === 'myDynamic'"/>
       <updatepassword v-if="pagePath==='updatepassword'"/>
       <MessageAlert v-if="pagePath==='messageAlert'"/>
+      <ForAi v-if="pagePath==='forAi'"/>
     </div>
   </div>
 </template>
@@ -47,6 +52,8 @@ import router from "@/router";
 import {inject} from "vue";
 import Updatepassword from "../components/updatepassword.vue";
 import MessageAlert from "../components/MessageAlert.vue";
+import { Icon } from '@iconify/vue';
+import ForAi from "../components/forAi.vue";
 
 const reload = inject('reload')
 
@@ -71,7 +78,8 @@ const changePagePath = (pagePath) => {
 
 li {
   text-align: center;
-  margin: 15px 0;
+  margin: 20px 0;
+  height: 50px;
   cursor: pointer;
   font-size: 16px;
 }
@@ -81,11 +89,25 @@ li {
 }
 
 .menu-icon {
-  margin-right: 5px;
-  top: 2px
+  margin-right: 10px;
+  position: relative;
+  top:13px;
+
 }
 
 .menu-active {
   color: dodgerblue;
+  background-color: #a6c1ee;
+}
+.item-all {
+  font-weight: bolder;
+  color: gray;
+  font-size: large;
+  position: relative;
+  top: 10px;
+
+}
+.li-radius{
+  border-radius: 5px;
 }
 </style>
