@@ -28,7 +28,12 @@ const router = createRouter({
                     path:'personCenter',
                     name:'personCenter',
                     component:import("../views/PersonCenter.vue")
-                }
+                },
+                {
+                    path:'clockIn',
+                    name:'ChockIn',
+                    component:import("../views/ChockIn.vue")
+                },
             ]
         },
         {

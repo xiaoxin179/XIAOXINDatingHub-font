@@ -46,9 +46,8 @@ let state = reactive({
   user: {},
 })
 
-const userId = store.user.id
 const loadUser = () => {
-  request.get('/user/' + userId).then(res => {
+  request.get('/user/' + store.user.id).then(res => {
     state.user = res.data
     console.log(state.user.avatar)
   })

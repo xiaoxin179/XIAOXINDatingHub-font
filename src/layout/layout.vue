@@ -20,6 +20,7 @@
           <el-menu-item index="/home">首页</el-menu-item>
           <el-menu-item index="/im">聊天室</el-menu-item>
           <el-menu-item index="/ai">Ai助学问答</el-menu-item>
+          <el-menu-item index="/clockIn">学习打卡</el-menu-item>
         </el-menu>
       </div> <!-- 菜单区域 -->
 
