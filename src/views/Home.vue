@@ -2,11 +2,12 @@
 import {ChatLineRound, Compass, Pointer, View} from '@element-plus/icons-vue'
 import request from "@/utils/request";
 import {reactive} from "vue";
+import {useUserStore} from "../stores/user";
 
 function filterTime(time) {
   const date = new Date(time)
   const Y = date.getFullYear()
-  const M = date.getMonth() + 1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1
+  const M = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
   const D = date.getDate()
   return `${Y}-${M}-${D}`
 }
@@ -21,14 +22,18 @@ const state = reactive({
       <!--      话题动态-->
       <div class="dynamic-box" style="width: 60%; ">
 
-        <div style="padding: 20px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px" v-for="item in state.hotDynamics" :key="item.id">
+        <div style="padding: 20px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px"
+             v-for="item in state.hotDynamics" :key="item.id">
           <div style="display:flex;">
             <img style="width: 50px; height: 50px; margin-right: 20px; border-radius: 50%"
                  :src="item.user.avatar"
                  alt="">
             <div style="flex: 1; line-height: 25px">
               <div style="font-weight: bold">{{ item.user.name }}</div>
-              <div style="font-size: 12px; color: #999">{{ filterTime(item.createTime) }} · 来自 {{ item.location }}</div>
+              <div style="font-size: 12px; color: #999">{{ filterTime(item.createTime) }} · 来自 {{
+                  item.location
+                }}
+              </div>
             </div>
             <el-button>关注</el-button>
           </div>
@@ -83,14 +88,20 @@ const state = reactive({
       <!-- 咨询-->
       <div style="width: 40%; ">
 
-        <div style=" padding: 10px; margin-left: 10px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px">
+        <div
+            style=" padding: 10px; margin-left: 10px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 10px">
           <div style="font-size: 18px; padding: 10px; color: salmon"><b>交友资讯</b></div>
 
-          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span> <span>经常不在家，如何让亲人听到你的声音？</span></div>
-          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span> <span>经常不在家，如何让亲人听到你的声音？</span></div>
-          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span> <span>经常不在家，如何让亲人听到你的声音？</span></div>
-          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span> <span>经常不在家，如何让亲人听到你的声音？</span></div>
-          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span> <span>经常不在家，如何让亲人听到你的声音？</span></div>
+          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span>
+            <span>经常不在家，如何让亲人听到你的声音？</span></div>
+          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span>
+            <span>经常不在家，如何让亲人听到你的声音？</span></div>
+          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span>
+            <span>经常不在家，如何让亲人听到你的声音？</span></div>
+          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span>
+            <span>经常不在家，如何让亲人听到你的声音？</span></div>
+          <div style="font-size: 14px; margin: 10px"><span style="color: goldenrod">1. </span>
+            <span>经常不在家，如何让亲人听到你的声音？</span></div>
         </div>
 
         <div style=" padding: 10px; margin-left: 10px; border: 1px solid #ccc; border-radius: 10px">
@@ -136,7 +147,6 @@ const state = reactive({
         </div>
 
       </div>
-
 
 
     </div>
