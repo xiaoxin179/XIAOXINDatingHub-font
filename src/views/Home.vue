@@ -1,6 +1,6 @@
 <script setup>
 import {ChatLineRound, Compass, Pointer, View} from '@element-plus/icons-vue'
-import request from "@/utils/request";
+import request from "../utils/request";
 import {reactive} from "vue";
 import {useUserStore} from "../stores/user";
 

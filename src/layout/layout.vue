@@ -6,7 +6,7 @@
         <div style="width: 100px; padding-left: 30px">
           <img src="../assets/imgs/logo.png" alt="" style="width: 60px; display: inline">
         </div>
-        <div style="flex: 1; color: SlateBlue; font-size: 16px"><b style="font-weight: bolder">校园学习交友平台</b>
+        <div style="flex: 1; color: SlateBlue; font-size: 16px"><b style="font-weight: bolder">校园学习交友社区</b>
         </div>
       </div> <!-- logo -->
       <div style="flex: 1; padding-left: 50px">
@@ -21,6 +21,7 @@
           <el-menu-item index="/im">聊天室</el-menu-item>
           <el-menu-item index="/ai">Ai助学问答</el-menu-item>
           <el-menu-item index="/clockIn">学习打卡</el-menu-item>
+          <el-menu-item index="/introduction">项目简介</el-menu-item>
         </el-menu>
       </div> <!-- 菜单区域 -->
 
@@ -50,7 +51,7 @@
     </div>
     <div style="width: 100%;background-color: #8c8989;color:white;font-weight:bold;height: 40px;text-align: center;font-size: large">
       <span
-          style="position: relative;top:7px;float: right;margin-right: 50px">@copyright 软件工程专业综合实训  小组成员：邓高勇 李华先 张静 郭帅 隆国强</span>
+          style="position: relative;top:7px;float: right;margin-right: 50px">@copyright 软件工程专业综合实训  小组成员：邓高勇 李华先 张静 隆国强 郭帅</span>
     </div>
 
   </div>

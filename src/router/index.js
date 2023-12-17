@@ -34,6 +34,11 @@ const router = createRouter({
                     name:'ChockIn',
                     component:import("../views/ChockIn.vue")
                 },
+                {
+                    path:'introduction',
+                    name:'Introduction',
+                    component:import("../views/Introduction.vue")
+                },
             ]
         },
         {
